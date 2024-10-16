@@ -29,10 +29,10 @@ function mostrar(lista) {
             if (boton) {
                 setTimeout(() => {
                     cambiarTemporal(boton, cambios[lista[i]], originales[lista[i]], 500);
-                }, i * 1000); // Retraso entre cada color
+                }, i * 1000);
             }
         }
-    }, 500); // Retraso de 1 segundo antes de comenzar la secuencia
+    }, 500); 
 }
 
 function esperarTurno(index, lista) {
@@ -46,7 +46,7 @@ function esperarTurno(index, lista) {
 
         Object.keys(botones).forEach((key) => {
             botones[key].onclick = () => {
-                resolve(parseInt(key)); // Resolvemos con el número del botón presionado
+                resolve(parseInt(key));
             };
         });
     });
@@ -62,25 +62,24 @@ async function juego() {
         mostrar(lista);
 
         for (let i = 0; i < lista.length; i++) {
-            // Esperar a que el usuario haga clic en un botón
+            
             let botonPresionado = await esperarTurno(i);
             verificarTurno(botonPresionado, lista[i]);
 
-            // Verificar si ha perdido
+            
             if (botonPresionado !== lista[i]) {
                 alert("¡GAME OVER!");
-                return; // Salir del juego
+                return; 
             }
         }
 
         if (lista.length >= 10) {
-            continua = false; // Finaliza después de 10 turnos
+            continua = false;
         }
     }
 }
 
 function verificarTurno(botonPresionado, correcto) {
-    // Aquí podrías agregar lógica adicional si lo deseas
 }
 
 const iniciar = document.querySelector(".ini");
